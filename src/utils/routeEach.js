@@ -4,35 +4,29 @@ import Cookies from "js-cookie"
 import Layout from "../layout";
 export default (routes) => {
 
+    function isLayout(route) {
+        if (route.meta.flag) {
+            return (
+                <Layout path={route.path}>
+                    <route.component />
+                </Layout>
+            )
+        } else {
+            return <route.component />
+        }
+    }
+
+
 
     function isLogin(route) {
         if (route.path !== "/login" && route.meta.requiredAuth) {
             if (Cookies.get("token")) {
-                if (route.meta.flag) {
-                    return (
-                        <Layout>
-                            <route.component />
-                        </Layout>
-                    )
-                } else {
-                    return <route.component />
-                }
+                return isLayout(route)
             } else {
                 return <Redirect to={{ pathname: "/login", params: { from: route.path } }} />
             }
         } else {
-            if (route.meta.flag) {
-               
-                return (
-                    <Layout>
-                        <route.component />
-                    </Layout>
-                )
-            } else {
-               
-                return <route.component />
-            }
-
+            return isLayout(route)
         }
     }
 

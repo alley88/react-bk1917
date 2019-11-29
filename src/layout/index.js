@@ -6,7 +6,7 @@ export default class Layout extends Component {
             <Fragment>
                 {this.props.children}
                 {/* 内容区 */}
-                <TabBar/>
+                <TabBar path={this.props.path}/>
             </Fragment>
         )
     }
