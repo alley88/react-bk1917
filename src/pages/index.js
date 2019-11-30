@@ -25,3 +25,10 @@ export const Login = Loadable({
     loader: () => import("./login"),
     loading: Loading
 })
+
+
+
+export const Category = Loadable({
+    loader: () => import("./category"),
+    loading: Loading
+})
