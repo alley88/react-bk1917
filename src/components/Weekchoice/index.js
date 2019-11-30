@@ -5,10 +5,14 @@ import { ListContainer } from "./styled"
 import Bscroll from "common/bscroll"
 @connect(mapStateToProps, mapDispatchToProps)
 class Weekchoice extends Component {
+    constructor(){
+        super();
+        this.page = 0;
+    }
     render() {
         let { week_choice } = this.props;
         return (
-            <Bscroll>
+            <Bscroll ref="scroll">
                 <ListContainer>
                     {
                         week_choice.map((item, index) => (
@@ -33,8 +37,19 @@ class Weekchoice extends Component {
             </Bscroll>
         )
     }
+    componentWillUpdate(){
+        this.refs.scroll.handlefinishPullUp();
+    }
     componentDidMount() {
-        this.props.handleWeekAsyncData();
+        this.props.handleWeekAsyncData(this.props.cityId,this.page);
+        this.page++;
+
+        this.refs.scroll.handlepullingUp(()=>{
+            let cityId = this.props.cityId;
+            let page = this.page;
+            this.props.handleWeekAsyncData(cityId,page);
+            this.page++;
+        })
     }
 }
 

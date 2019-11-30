@@ -4,7 +4,8 @@ import {
     Order,
     Mine,
     Login,
-    Category
+    Category,
+    FoodType
 } from "pages"
 
 
@@ -58,6 +59,11 @@ export const NoTabBarRoute = [
     {
         path:"/category",
         component:Category,
+        meta:{}
+    },
+    {
+        path:'/foodType/:id/:cityId',
+        component:FoodType,
         meta:{}
     }
 ];

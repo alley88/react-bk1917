@@ -10,7 +10,19 @@ export default class BscrollCom extends Component {
         )
     }
     componentDidMount(){
-        this.scroll = new BScroll(this.refs.wrapper);
-        console.log(this.scroll);
+        this.scroll = new BScroll(this.refs.wrapper,{
+            pullUpLoad:true,
+            click:true,
+            tap:true
+        });
+    }
+    handlepullingUp(callback){
+        this.scroll.on("pullingUp",()=>{
+            callback();
+        })
+    }
+    handlefinishPullUp(){
+        this.scroll.finishPullUp();
+        this.scroll.refresh();
     }
 }

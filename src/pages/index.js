@@ -32,3 +32,8 @@ export const Category = Loadable({
     loader: () => import("./category"),
     loading: Loading
 })
+
+export const FoodType = Loadable({
+    loader: () => import("./foodType"),
+    loading: Loading
+})
